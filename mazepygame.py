@@ -1,6 +1,8 @@
-"""Here All necessary imports for the project"""
+"""Welcome yo the Macgyver Game, the code bellow
+preent all composant of the game, using OOP"""
 
 
+#Here All necessary imports for the project
 import random
 
 import pygame 
@@ -108,7 +110,7 @@ class Game:
         self.maze[rand_line][rand_char] = elt.letter
         elt.x = rand_char
         elt.y = rand_line
-        print(elt.x, elt.y, elt.letter)
+        #print(elt.x, elt.y, elt.letter)
     def update_pos(self, direction):
         """This method subject is updating the position after moving"""
         self.old_x_pos = self.macgyver.move_x
