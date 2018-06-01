@@ -29,14 +29,14 @@ class Game:
         self.store_map()
         self.macgyver.move_y = self.find_pos(self.macgyver)[0]
         self.macgyver.move_x = self.find_pos(self.macgyver)[1]
-        self.show_map_pygame()
         # Random position for MacGyver and other items
         self.random_pos(self.tube)
         self.random_pos(self.ether)
         self.random_pos(self.needle)
         self.random_pos(self.macgyver)
         self.show_map_pygame()
-        self.show_map_pygame()
+        self.update_pos("M")
+        #self.show_map_pygame()
         #The game loop, keep the game running while end condition is not completed.
         self.keep_run = True
         while self.keep_run:
@@ -113,30 +113,30 @@ class Game:
         #print(elt.x, elt.y, elt.letter)
     def update_pos(self, direction):
         """This method subject is updating the position after moving"""
-        self.old_x_pos = self.macgyver.move_x
-        self.old_y_pos = self.macgyver.move_y
+        self.old_x_pos = self.macgyver.x
+        self.old_y_pos = self.macgyver.y
         self.macgyver.move(direction)
-        if self.maze[self.macgyver.move_y][self.macgyver.move_x] == "W":
-            self.macgyver.move_x = self.old_x_pos
-            self.macgyver.move_y = self.old_y_pos
+        if self.maze[self.macgyver.y][self.macgyver.x] == "W":
+            self.macgyver.x = self.old_x_pos
+            self.macgyver.y = self.old_y_pos
             print("Can't across a wall")
         else:
-            if self.maze[self.macgyver.move_y][self.macgyver.move_x] in ["T", "E", "N"]:
-                self.macgyver.list_obj.append(self.maze[self.macgyver.move_y][self.macgyver.move_x])
+            if self.maze[self.macgyver.y][self.macgyver.x] in ["T", "E", "N"]:
+                self.macgyver.list_obj.append(self.maze[self.macgyver.y][self.macgyver.x])
                 print(self.macgyver.list_obj)
-            if self.maze[self.macgyver.move_y][self.macgyver.move_x] == "G":
+            if self.maze[self.macgyver.y][self.macgyver.x] == "G":
                 if len(self.macgyver.list_obj) == 3:
-                    self.macgyver.move_x = self.old_x_pos
-                    self.macgyver.move_y = self.old_y_pos
+                    self.macgyver.x = self.old_x_pos
+                    self.macgyver.y = self.old_y_pos
                     print("GAME OVER : You Won, Congrats !")
                     self.keep_run = False
                 else:
-                    self.macgyver.move_x = self.old_x_pos
-                    self.macgyver.move_y = self.old_y_pos
+                    self.macgyver.x = self.old_x_pos
+                    self.macgyver.y = self.old_y_pos
                     print("GAME OVER : You Lose!")
                     self.keep_run = False
 
-            self.maze[self.macgyver.move_y][self.macgyver.move_x] = "M"
+            self.maze[self.macgyver.y][self.macgyver.x] = "M"
             self.maze[self.old_y_pos][self.old_x_pos] = "-"
 
 
@@ -199,13 +199,13 @@ class Player(Element):
 
 
         if direction == "N":
-            self.move_y = self.move_y - 1
+            self.y = self.y - 1
         elif direction == "S":
-            self.move_y = self.move_y + 1
+            self.y = self.y + 1
         elif direction == "E":
-            self.move_x = self.move_x + 1
+            self.x = self.x + 1
         elif direction == "W":
-            self.move_x = self.move_x - 1
+            self.x = self.x - 1
 
 if __name__ == "__main__":
     GAME = Game()
