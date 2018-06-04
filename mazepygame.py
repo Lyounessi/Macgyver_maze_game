@@ -5,17 +5,17 @@ preent all composant of the game, using OOP"""
 #Here All necessary imports for the project
 import random
 
-import pygame 
+import pygame
 
-from pygame.locals import *
+from pygame.locals import QUIT, KEYDOWN, K_DOWN, K_UP, K_RIGHT, K_LEFT
 
 from constants import *
 
-
 class Game:
+    """This class present the global game class, caring of the
+    launching part and initialising all elements of the game"""
     def __init__(self):
         """initialising pygame"""
-        pygame.init()
         self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.maze = list(list())
         # Creation of all the elements
@@ -36,7 +36,6 @@ class Game:
         self.random_pos(self.macgyver)
         self.show_map_pygame()
         self.update_pos("M")
-        #self.show_map_pygame()
         #The game loop, keep the game running while end condition is not completed.
         self.keep_run = True
         while self.keep_run:
@@ -56,13 +55,11 @@ class Game:
                     if event.key == K_LEFT:
                         self.update_pos("W")
                         self.show_map_pygame()
-                        
     def store_map(self):
-        """Stocking the map in a 2D list""" 
+        """Stocking the map in a 2D list"""
         with open("my-map.txt", "r") as file_r:
             for line in file_r:
                 self.maze.append([char for char in line if char != "\n"])
-
     def show_map_pygame(self):
         """show the maze with pygame interface"""
         for i, line in enumerate(self.maze):
@@ -184,10 +181,8 @@ class Element:
 
     x = property(_get_position_x, _set_position_x)
     y = property(_get_position_y, _set_position_y)
-
-    
 class Player(Element):
-
+    """Class of our Hero Macgyver, as an element that must have special method """
     def __init__(self):
         """Creat a list to stock the loots in"""
         Element.__init__(self, "macgyver")
@@ -209,5 +204,3 @@ class Player(Element):
 
 if __name__ == "__main__":
     GAME = Game()
-
-
