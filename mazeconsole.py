@@ -40,11 +40,11 @@ for i, line in enumerate(used_map):
         if char == "M":
             m_line = i
             m_col = j
-
+print("M se situe dans la line:{} et la colone {}".format(m_line,m_col))
 #Launch the game with inputs to move the char "M"
 test = True
 while test:
-    answer = input("Choisissez une lettre pour déplacer le joueur? (N,S,E,W) ou Q pour quitter")
+    answer = input("Choisissez une lettre pour déplacer le joueur? (N= Nord,S= Sud,E= Est,W= West) ou Q pour quitter")
     if answer == "Q":
         test = False
     elif answer == "N":

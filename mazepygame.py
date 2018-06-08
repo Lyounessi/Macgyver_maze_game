@@ -1,5 +1,5 @@
-"""Welcome yo the Macgyver Game, the code bellow
-preent all composant of the game, using OOP"""
+"""Welcome to the Macgyver Game, the code bellow
+present all composants of the game, using OOP"""
 
 
 #Here All necessary imports for the project
