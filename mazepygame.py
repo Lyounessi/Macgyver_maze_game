@@ -93,7 +93,7 @@ class Game:
         return m_line, m_col
 
     def random_pos(self, elt):
-        """give a position to Macgyver in the maze"""
+        """give a random position to loots and Macgyver in the maze"""
         line, col = self.find_pos(elt)
         char = ""
         rand_line = 0
